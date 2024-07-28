@@ -4,7 +4,7 @@ import ast
 from collections import OrderedDict
 
 # Read the file and create the tree
-with open('../README.md', 'r') as file:
+with open('README.md', 'r') as file:
     tree = markdown_to_json.dictify(file.read())
 
 nodes = OrderedDict()
@@ -50,4 +50,4 @@ for key in nodes.keys():
     check_interaction(dot, node, 'Action Servers', False, 'Result ')
 
 
-dot.render(format='svg', filename='../system_architecture', engine='dot')
+dot.render(format='svg', filename='system_architecture', engine='dot')
