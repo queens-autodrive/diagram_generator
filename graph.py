@@ -55,6 +55,8 @@ def addPackage(graph, tree):
         check_interaction(dot, key, node, 'Action Clients', False, 'Result ')
         check_interaction(dot, key, node, 'Action Servers', True, 'Goal ')
         check_interaction(dot, key, node, 'Action Servers', False, 'Result ')
+        check_interaction(dot, key, node, 'Transform Broadcasters', True)
+        check_interaction(dot, key, node, 'Transform Listeners', False)
 
 
 dot = graphviz.Digraph(comment='System Architecture', strict=True)
