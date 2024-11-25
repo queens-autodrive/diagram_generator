@@ -14,12 +14,18 @@ elif 'Workspaces' in tree.keys():
 else:
     raise Exception
 
+edges = {}
+
 
 def add_edge(graph, start, end, label, pub=True):
     if pub:
-        graph.edge(start, end, label=label)
+        if (start, end, label) not in edges:
+            graph.edge(start, end, label=label)
+            edges[(start, end, label)] = True
     else:
-        graph.edge(end, start, label=label)
+        if (end, start, label) not in edges:
+            graph.edge(end, start, label=label)
+            edges[(start, end, label)] = True
 
 
 def check_interaction(graph, key, node, name, pub, prefix=''):
@@ -59,7 +65,7 @@ def addPackage(graph, tree):
         check_interaction(dot, key, node, 'Transform Listeners', False)
 
 
-dot = graphviz.Digraph(comment='System Architecture', strict=True)
+dot = graphviz.Digraph(comment='System Architecture', strict=False)
 if repo_type == 'package':
     addPackage(dot, tree)
 else:
